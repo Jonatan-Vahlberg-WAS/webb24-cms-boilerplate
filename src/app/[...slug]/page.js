@@ -1,4 +1,4 @@
-import StoryblokStory from "@storyblok/react/story";
+import { StoryblokStory } from '@storyblok/react/rsc';
 import { notFound } from "next/navigation";
 import { StoryblokCMS } from "@/utils/cms";
 
@@ -33,8 +33,3 @@ export default async function CMSPage(props) {
     notFound();
   }
 }
-
-//Force dynamic rendering in development and Visual editor
-export const dynamic = StoryblokCMS.isDevelopment
-  ? "force-dynamic"
-  : "force-static";
