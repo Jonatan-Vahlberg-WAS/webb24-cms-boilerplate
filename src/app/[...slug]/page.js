@@ -14,14 +14,16 @@ export async function generateStaticParams() {
 }
 
 //Generates static meta props for each story
-export async function generateMetadata({params}) {
+export async function generateMetadata(props) {
+  const params = await props.params;
   const slug = params.slug.join("/");
   return StoryblokCMS.generateMetaFromStory(slug);
 }
 
 //Params are passed to the CMSPage component and used to fetch the story
 //This function is called for each item in the paths array returned from generateStaticParams func
-export default async function CMSPage({ params }) {
+export default async function CMSPage(props) {
+  const params = await props.params;
   try {
     const currentStory = await StoryblokCMS.getStory(params);
     if (!currentStory) throw new Error();
